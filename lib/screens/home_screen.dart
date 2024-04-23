@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ithub_flutter_1/screens/login_screen.dart';
 import 'package:ithub_flutter_1/screens/account_screen.dart';
+import 'package:ithub_flutter_1/screens/weather_screen.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -39,16 +40,9 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SafeArea(
-
-        // TODO: Сделать странички, доступные только авторизованным пользователям.
-        child: Center(
-          child: (user == null)
-              ? const Text("НЕ Авторизован! Если авторизуешься будет много интересного!")
-              : const Text('Авторизован! Сейчас мы пойдём дальше и напишем много интересного кода'),
-        ),
-
-      ),
+      body: (user == null) 
+        ? const Text('НЕ Авторизован! Если авторизуешься будет много интересного!')
+        : const WeatherScreen(),
     );
   }
 }
