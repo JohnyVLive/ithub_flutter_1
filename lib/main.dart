@@ -7,7 +7,7 @@ import 'package:ithub_flutter_1/screens/home_screen.dart';
 import 'package:ithub_flutter_1/screens/login_screen.dart';
 import 'package:ithub_flutter_1/screens/account_screen.dart';
 import 'package:ithub_flutter_1/screens/signup_sreen.dart';
-// import 'package:ithub_flutter_1/screens/weather_screen.dart';
+import 'package:ithub_flutter_1/screens/weather_screen.dart';
 
 
 Future<void> main() async {
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         '/account': (context) => const AccountScreen(), // Страница управления аккаунтом
         '/signup': (context) => const SignUpScreen(), // Страница регистрации
 
-        // '/weather': (context) => const WeatherScreen(), // Страница с погодой
+        '/weather': (context) => const WeatherScreen(), // Страница с погодой
       },
       initialRoute: '/',
     );

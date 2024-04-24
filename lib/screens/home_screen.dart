@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ithub_flutter_1/screens/login_screen.dart';
 import 'package:ithub_flutter_1/screens/account_screen.dart';
-import 'package:ithub_flutter_1/screens/weather_screen.dart';
+// import 'package:ithub_flutter_1/screens/weather_screen.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -42,7 +42,22 @@ class HomeScreen extends StatelessWidget {
       ),
       body: (user == null) 
         ? const Text('НЕ Авторизован! Если авторизуешься будет много интересного!')
-        : const WeatherScreen(),
+        //TODO: Добавить возможность выбирать приложения. Иконки приложений..
+        : Center(
+            child: 
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.cloud_circle),
+                    iconSize: 100,
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/weather');
+                    }, 
+                  )
+                ],
+              ),
+        ),
     );
   }
 }
