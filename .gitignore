@@ -42,5 +42,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-#Sensetivity data
+# Sensetivity data
 /lib/firebase_options.dart
+# My links and tutorials
+readme.my
