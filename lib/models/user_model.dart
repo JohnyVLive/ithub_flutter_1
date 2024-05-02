@@ -1,18 +1,51 @@
 import 'package:equatable/equatable.dart';
+import '../entities/user_entity.dart';
 
-class User extends Equatable{
-  const User({required this.id, this.email, this.name, this.photo});
+class MyUser extends Equatable  {
+	final String userId;
+	final String email;
+	final String name;
 
-  final String id;
-  final String? email;
-  final String? name;
-  final String? photo;
+	const MyUser({
+		required this.userId,
+		required this.email,
+		required this.name
+	});
 
-  static const empty = User(id: '');
+	static const empty = MyUser(
+		userId: '', 
+		email: '', 
+		name: ''
+	);
 
-  bool get isEmpty => this == User.empty;
-  bool get isNotEmoty => this != User.empty;
-  
-  @override
-  List<Object?> get props => [id, email, name, photo];
+	MyUser copyWith({
+		String? userId,
+		String? email,
+		String? name
+	}) {
+		return MyUser(
+			userId: userId ?? this.userId, 
+			email: email ?? this.email, 
+			name: name ?? this.name
+		);
+	}
+
+	MyUserEntity toEntity() {
+		return MyUserEntity(
+			userId: userId, 
+			email: email, 
+			name: name
+		);
+	}
+
+	static MyUser fromEntity(MyUserEntity entity) {
+		return MyUser(
+			userId: entity.userId, 
+			email: entity.email, 
+			name: entity.name
+		);
+	}
+	
+	@override
+	List<Object?> get props => [userId, email, name];
 }
