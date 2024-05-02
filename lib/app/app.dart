@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
         ),
 
         routes: {
-          '/': (context) => const FirebaseStream(), // Проверка состояния пользователя.
+          // '/': (context) => const FirebaseStream(), // Проверка состояния пользователя.
 
-          '/home': (context) => const HomeScreen(), // Домашняя главная страница
+          '/': (context) => const HomeScreen(), // Домашняя главная страница
 
           '/login': (context) => const LoginScreen(), // Страница авторизации
           '/account': (context) => const AccountScreen(), // Страница управления аккаунтом

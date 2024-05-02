@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     }
 
-    navigator.pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
+    navigator.pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
   }
 
   @override

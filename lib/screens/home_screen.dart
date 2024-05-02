@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ithub_flutter_1/screens/login_screen.dart';
-import 'package:ithub_flutter_1/screens/account_screen.dart';
-// import 'package:ithub_flutter_1/screens/weather_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ithub_flutter_1/blocs/auth_bloc/auth_bloc.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -10,8 +8,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -19,31 +15,33 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColorLight,
         centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: () {
-              if (user == null) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+          BlocBuilder<AuthenticationBloc, AuthenticationState>(
+            builder: (context, state){
+              if (state.status == AuthenticationStatus.authenticated){
+                return IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/account');
+                  },
+                  icon: const Icon(Icons.person_2_rounded, color: Colors.green),
                 );
               } else {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AccountScreen()),
+                return IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/login');
+                  },
+                  icon: const Icon(Icons.lock_person_sharp, color: Colors.red),
                 );
               }
-            },
-            icon: (user == null)
-              ? const Icon(Icons.lock_person_sharp, color: Colors.red) 
-              : const Icon(Icons.person_2_rounded, color: Colors.green),
+            }
           ),
         ],
       ),
-      body: (user == null) 
-        ? const Text('НЕ Авторизован! Если авторизуешься будет много интересного!')
-        //TODO: Добавить возможность выбирать приложения. Иконки приложений..
-        : Center(
+      body: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+          if (state.status == AuthenticationStatus.unauthenticated){
+            return const Text('НЕ Авторизован! Если авторизуешься будет много интересного!');
+          } else {
+            return Center(
             child: 
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -57,7 +55,10 @@ class HomeScreen extends StatelessWidget {
                   )
                 ],
               ),
-        ),
+            );
+          }
+        },
+      ),
     );
   }
 }
