@@ -19,7 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailInputController = TextEditingController();
   TextEditingController passwordInputController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  bool loginRequired = false;
   
 
   @override
@@ -57,16 +56,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 listener: (context, state){
                   if(state is LoginSuccess) {
                     setState(() {
-                      loginRequired = false;
                       Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
                     });
                   } else if(state is LoginProcess) {
                     setState(() {
-                      loginRequired = true;
                     });
                   } else if(state is LoginFailure) {
                     setState(() {
-                      loginRequired = false;
                       SnackBarService.showSnackBar(
                         context,
                         'Неправильный email или пароль. Повторите попытку',

@@ -13,7 +13,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // TODO: Remove this observer after develop
   Bloc.observer = SimpleBlocObserver();
+
   runApp(MyApp(FirebaseUserRepo()));
 }
 

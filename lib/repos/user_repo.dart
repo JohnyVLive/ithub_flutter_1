@@ -10,5 +10,5 @@ abstract class UserRepository {
 
 	Future<void> setUserData(MyUser user);
 
-	Future<void> logOut();
+	Future<void> signOut();
 }
