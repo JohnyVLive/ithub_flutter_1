@@ -18,3 +18,8 @@ class LoginFailure extends LoginState {
 }
 
 class LoginProcess extends LoginState {}
+
+class PasswordStatus extends LoginState{
+  static bool isHiddenPassword = true;
+
+}

@@ -27,7 +27,7 @@ class FirebaseUserRepo implements UserRepository {
 				password: password
 			);
     } catch (e) {
-      log(e.toString());
+      // log(e.toString());
 			rethrow;
     }
   }
@@ -45,7 +45,9 @@ class FirebaseUserRepo implements UserRepository {
 			);
 
 			return myUser;
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
+      // log(e.toString());
+      // print(e.code);
       log(e.toString());
 			rethrow;
     }

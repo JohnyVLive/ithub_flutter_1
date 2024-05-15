@@ -10,11 +10,15 @@ sealed class LoginEvent {
 class LoginRequired extends LoginEvent{
 	final String email;
 	final String password;
+  final BuildContext context;
 
-  const LoginRequired(this.email, this.password);
+  const LoginRequired(this.email, this.password, this.context);
 }
 
 class SignOutRequired extends LoginEvent{
-
 	const SignOutRequired();
+}
+
+class PasswordViewRequired extends LoginEvent{
+
 }

@@ -54,21 +54,14 @@ class _LoginScreenState extends State<LoginScreen> {
             builder: (context){
               return BlocListener<LoginBloc, LoginState>(
                 listener: (context, state){
-                  if(state is LoginSuccess) {
-                    setState(() {
-                      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-                    });
-                  } else if(state is LoginProcess) {
-                    setState(() {
-                    });
-                  } else if(state is LoginFailure) {
-                    setState(() {
-                      SnackBarService.showSnackBar(
-                        context,
-                        'Неправильный email или пароль. Повторите попытку',
-                        true,
-                      );
-                    });
+                  if(state is LoginFailure) {
+                    SnackBarService.showSnackBar(
+                      context,
+                      state.message,
+                      true,
+                    );
+                  } else if (state is PasswordStatus){
+                    print('aaaaaaaaaa!!!!');
                   }
                 }, 
               child: Form(
@@ -101,7 +94,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         border: const OutlineInputBorder(),
                         hintText: 'Введите пароль',
                         suffix: InkWell(
-                          onTap: togglePasswordView,
+                          onTap: () {
+                            
+                            context.read<LoginBloc>().add(PasswordViewRequired());
+                            
+                          },
+                          // onTap: togglePasswordView,
                           child: Icon(
                             isHiddenPassword
                                 ? Icons.visibility_off
@@ -116,7 +114,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         context.read<LoginBloc>().add(LoginRequired(
                           emailInputController.text.trim(), 
-                          passwordInputController.text.trim()
+                          passwordInputController.text.trim(),
+                          context
                         ));
                       },
                       child: const Center(child: Text('Войти')),

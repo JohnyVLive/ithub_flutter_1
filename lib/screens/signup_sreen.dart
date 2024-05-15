@@ -107,15 +107,19 @@ class _SignUpScreen extends State<SignUpScreen> {
               return BlocListener<SignUpBloc, SignUpState>(
                 listener: (context, state) {
                   if(state is SignUpSuccess) {
-                    setState(() {
-                      navigateToHome();
-                    });
+                    navigateToHome();
+                    // setState(() {
+                    //   navigateToHome();
+                    // });
                   } else if(state is SignUpProcess) {
                     setState(() {
                     });
                   }  else if(state is SignUpFailure) {
+                    // SignUpFailure.getError();
+
                     SnackBarService.showSnackBar(
                       context,
+                      // SignUpFailure.getError(),
                       'Такой Email уже используется, повторите попытку с использованием другого Email',
                       true,
                     );  
