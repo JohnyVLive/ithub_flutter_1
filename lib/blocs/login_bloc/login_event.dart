@@ -19,6 +19,4 @@ class SignOutRequired extends LoginEvent{
 	const SignOutRequired();
 }
 
-class PasswordViewRequired extends LoginEvent{
-
-}
+class PasswordViewTaped extends LoginEvent{}
