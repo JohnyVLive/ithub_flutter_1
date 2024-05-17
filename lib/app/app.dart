@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
 
           '/login': (context) => LoginScreen(), // Страница авторизации
           '/account': (context) => const AccountScreen(), // Страница управления аккаунтом
-          '/signup': (context) => const SignUpScreen(), // Страница регистрации
+          '/signup': (context) => SignUpScreen(), // Страница регистрации
 
           '/weather': (context) => const WeatherScreen(), // Страница с погодой
         },

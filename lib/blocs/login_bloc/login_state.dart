@@ -10,11 +10,11 @@ class LoginState extends Equatable{
 }
 
 final class LoginInitial extends LoginState {
-  LoginInitial({required super.isHiddenPassword});
+  const LoginInitial({required super.isHiddenPassword});
 }
 
 class LoginSuccess extends LoginState {
-  LoginSuccess({required super.isHiddenPassword});
+  const LoginSuccess({required super.isHiddenPassword});
 }
 
 class LoginFailure extends LoginState {
@@ -24,9 +24,13 @@ class LoginFailure extends LoginState {
 }
 
 class LoginProcess extends LoginState {
-  LoginProcess({required super.isHiddenPassword});
+  const LoginProcess({required super.isHiddenPassword});
 }
 
-class PasswordStatus extends LoginState{
-  PasswordStatus({required super.isHiddenPassword});
+class PasswordStatusShow extends LoginState{
+  const PasswordStatusShow({required super.isHiddenPassword});
+}
+
+class PasswordStatusHide extends LoginState{
+  const PasswordStatusHide({required super.isHiddenPassword});
 }
